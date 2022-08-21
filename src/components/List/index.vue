@@ -1,6 +1,6 @@
 <template>
     <ul class="todo-main">
-        <Item v-for="(todo, index) in todos" :todo="todo" :deleteTodo="deleteTodo" :updateTodo="updateTodo"/>
+        <Item v-for="(todo, index) in todos" :todo="todo" :deleteTodo="deleteTodo" :updateTodo="updateTodo" :index="index"/>
     </ul>
 </template>
 

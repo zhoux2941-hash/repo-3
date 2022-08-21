@@ -5,7 +5,7 @@
             <input type="checkbox" v-model="isComptete">
             <span>{{ todo.title }}</span>
         </label>
-        <button class="btn btn-danger" style="display:none" v-show="isshow" @click="delTodo" :index="index">删除</button>
+        <button class="btn btn-danger" style="display:none" v-show="isshow" @click="delTodo">删除</button>
     </li>
 </template>
 
@@ -28,9 +28,9 @@ export default defineComponent({
             type: Number,
             required: true
         },
-        updateTodo:{
-            type:Function,
-            required:true
+        updateTodo: {
+            type: Function,
+            required: true
         }
     },
     setup(props) {
@@ -56,9 +56,14 @@ export default defineComponent({
 
 
         const delTodo = () => {
-            if (window.confirm('确定要删除吗')) {
-                props.deleteTodo(props.index)
+            if (props.todo.isCompleted) {
+                if (window.confirm('确定要删除吗')) {
+                    props.deleteTodo(props.index)
+                }
+            }else{
+                alert('你的任务还没有完成不能删除')
             }
+
         }
 
         const isComptete = computed({
@@ -66,7 +71,7 @@ export default defineComponent({
                 return props.todo.isCompleted
             },
             set(val) {
-                props.updateTodo(props.todo,val)
+                props.updateTodo(props.todo, val)
             }
         })
 
@@ -97,7 +102,7 @@ li label {
     cursor: pointer;
 }
 
-li label li input {
+li label input {
     vertical-align: middle;
     margin-right: 6px;
     position: relative;
