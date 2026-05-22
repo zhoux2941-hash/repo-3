@@ -24,3 +24,6 @@ pnpm-debug.log*
 .pnpm-store
 dist
 
+.pnpm-store
+dist
+
